@@ -33,7 +33,6 @@ samples = [
     "wzp6_ee_WWZ_Zbb_ecm340",
     "wzp6_ee_WWZ_Zbb_ecm345",
     "wzp6_ee_WWZ_Zbb_ecm365",
-
     "wzp6_ee_WbWb_PSup_ecm340",
     "wzp6_ee_WbWb_PSup_ecm345",
     "wzp6_ee_WbWb_PSup_ecm365",
@@ -52,7 +51,18 @@ samples = [
     "p8_ee_WW_PSup_ecm340",
     "p8_ee_WW_PSup_ecm345",
     "p8_ee_WW_PSup_ecm365",
-
+    "wzp6_ee_qq_ecm340",
+    "wzp6_ee_qq_ecm345",
+    "wzp6_ee_qq_ecm365",
+    "wzp6_ee_qq_PSdown_ecm340",
+    "wzp6_ee_qq_PSdown_ecm345",
+    "wzp6_ee_qq_PSdown_ecm365",
+    "wzp6_ee_qq_PSup_ecm340",
+    "wzp6_ee_qq_PSup_ecm345",
+    "wzp6_ee_qq_PSup_ecm365",
+    'p8_ee_ZZ_ecm365',
+    'p8_ee_ZZ_ecm345',
+    'p8_ee_ZZ_ecm340',
 ]
 
 indir = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"

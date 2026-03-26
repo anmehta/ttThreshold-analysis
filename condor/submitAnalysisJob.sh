@@ -10,7 +10,8 @@ NCPU=${6}
 echo "LOCAL_DIR dir: ${LOCAL_DIR}"
 
 cd ${LOCAL_DIR}
-source ../FCCAnalyses/setup.sh
+source /cvmfs/sw.hsf.org/key4hep/setup.sh -r 2024-03-10
+source ../FCCAnalyses_fresh/setup.sh #change path to your own setup.sh
 export PYTHONPATH=$LOCAL_DIR:$PYTHONPATH
 export LD_LIBRARY_PATH=$LOCAL_DIR/install/lib:$LD_LIBRARY_PATH
 #echo "PYTHONPATH: ${PYTHONPATH}"
