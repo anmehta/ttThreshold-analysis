@@ -48,7 +48,9 @@ for br in tree.GetListOfBranches():
     name = br.GetName()
     leaf = br.GetLeaf(name)
 
-    if name not in toPlot: continue
+    #    if name not in toPlot: continue
+    if not ("res" in name or  "_d" in name): continue
+    
     if not leaf:
         print(f"Skipping {name} (no leaf)")
         continue

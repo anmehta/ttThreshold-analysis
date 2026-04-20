@@ -19,6 +19,14 @@ sl_arr  = array('f', [0.])
 sn_arr  = array('f', [0.])
 chi2_arr = array('f', [0.])
 
+p1_arr  = array('f', [0.])
+p2_arr  = array('f', [0.])
+pn_arr  = array('f', [0.])
+t1_arr  = array('f', [0.])
+t2_arr  = array('f', [0.])
+tn_arr  = array('f', [0.])
+
+
 pt_lep_postfit = array('f', [0.])
 pt_j1_postfit  = array('f', [0.])
 pt_j2_postfit  = array('f', [0.])
@@ -34,6 +42,22 @@ pt_nu_prefit  = array('f', [0.])
 mWlep_prefit  = array('f', [0.])
 mWhad_prefit  = array('f', [0.])
 deltaP_prefit = array('f', [0.])
+
+
+phi_j1_prefit  = array('f', [0.])
+phi_j2_prefit  = array('f', [0.])
+phi_nu_prefit  = array('f', [0.])
+theta_j1_prefit  = array('f', [0.])
+theta_j2_prefit  = array('f', [0.])
+theta_nu_prefit  = array('f', [0.])
+
+phi_j1_postfit  = array('f', [0.])
+phi_j2_postfit  = array('f', [0.])
+phi_nu_postfit  = array('f', [0.])
+theta_j1_postfit  = array('f', [0.])
+theta_j2_postfit  = array('f', [0.])
+theta_nu_postfit  = array('f', [0.])
+
 
 Wlep_px_prefit = array('f', [0.])
 Wlep_py_prefit = array('f', [0.])
@@ -68,6 +92,15 @@ tree_out.Branch("mWhad_prefit",  mWhad_prefit, "mWhad_prefit/F")
 tree_out.Branch("deltaP_prefit", deltaP_prefit, "deltaP_prefit/F")
 
 
+tree_out.Branch("theta_j1_prefit",  theta_j1_prefit,  "theta_j1_prefit/F")
+tree_out.Branch("theta_j2_prefit",  theta_j2_prefit,  "theta_j2_prefit/F")
+tree_out.Branch("theta_nu_prefit",  theta_nu_prefit,  "theta_nu_prefit/F")
+
+tree_out.Branch("phi_j1_prefit",  phi_j1_prefit,  "phi_j1_prefit/F")
+tree_out.Branch("phi_j2_prefit",  phi_j2_prefit,  "phi_j2_prefit/F")
+tree_out.Branch("phi_nu_prefit",  phi_nu_prefit,  "phi_nu_prefit/F")
+
+
 tree_out.Branch("Wlep_px_postfit", Wlep_px_postfit, "Wlep_px_postfit/F")
 tree_out.Branch("Wlep_py_postfit", Wlep_py_postfit, "Wlep_py_postfit/F")
 tree_out.Branch("Wlep_pz_postfit", Wlep_pz_postfit, "Wlep_pz_postfit/F")
@@ -91,6 +124,16 @@ tree_out.Branch("sl",  sl_arr,  "sl/F")
 tree_out.Branch("sn",  sn_arr,  "sn/F")
 tree_out.Branch("chi2",chi2_arr, "chi2/F")
 
+
+
+tree_out.Branch("p1",  p1_arr,  "p1/F")
+tree_out.Branch("p2",  p2_arr,  "p2/F")
+tree_out.Branch("pn",  pn_arr,  "pn/F")
+tree_out.Branch("t1",  t1_arr,  "t1/F")
+tree_out.Branch("t2",  t2_arr,  "t2/F")
+tree_out.Branch("tn",  tn_arr,  "tn/F")
+
+
 ECM = 160.0
 fname="/afs/cern.ch/work/a/anmehta/public/FCC_ver2/FCCAnalyses/ttThreshold-analysis/outputs/treemaker/lnuqq/semihad/wzp6_ee_munumuqq_noCut_ecm160.root"
 file = uproot.open(fname)
@@ -110,6 +153,14 @@ h_res_jet1_qq_fromele=df.Histo1D(    ("h_res_jet1_qq_fromele","",50,-0.5,0.5),  
 h_lep_res=df.Histo1D(("h_lep_res","",50,-0.2,0.2),    "lep_res")
 h_mp_res=df.Histo1D(("h_met_res","",50,-0.3,0.3),    "missing_p_res")
 
+h_jet1_theta_res=df.Histo1D(("h_jet1_theta_res","",50,-0.4,0.4),"jet1_dtheta")
+h_jet2_theta_res=df.Histo1D(("h_jet2_theta_res","",50,-0.4,0.4),"jet2_dtheta")
+h_jet1_phi_res=df.Histo1D(("h_jet1_phi_res","",50,-0.4,0.4),"jet1_dphi")
+h_jet2_phi_res=df.Histo1D(("h_jet2_phi_res","",50,-0.4,0.4),"jet2_dphi")
+h_met_phi_res=df.Histo1D(("h_met_phi_res","",50,-0.4,0.4),"met_dphi")
+h_met_theta_res=df.Histo1D(("h_met_theta_res","",50,-0.4,0.4),"met_dtheta")
+
+
 sigma_lep=h_lep_res.GetRMS();
 sigma_mp=h_mp_res.GetRMS();
 sigma_j1=h_res_jet1_qq_fromele.GetRMS();
@@ -117,6 +168,19 @@ sigma_j2=h_res_jet2_qq_fromele.GetRMS();
 sigma_p_iso_lnuexcljj=h_p_iso_lnuexcljj.GetRMS();
 sigma_plnu=h_plnu.GetRMS();
 sigma_mjj=h_mjj.GetRMS();
+#jet1_theta_rms = h_jet1_theta_res.GetRMS();
+#jet2_theta_rms = h_jet2_theta_res.GetRMS();
+#jet1_phi_rms = h_jet1_phi_res.GetRMS();
+#jet2_phi_rms = h_jet2_phi_res.GetRMS();
+#met_phi_rms = h_met_phi_res.GetRMS();
+#met_theta_rms = h_met_theta_res.GetRMS();
+
+jet1_theta_rms=0.05
+jet1_phi_rms=0.05
+jet2_theta_rms=0.05
+jet2_phi_rms=0.06
+met_theta_rms=0.04
+met_phi_rms=0.05
 
 mean_lep=h_lep_res.GetMean();
 mean_mp=h_mp_res.GetMean();
@@ -210,47 +274,64 @@ def breit_wigner(m, MW, GW):
     return (MW * GW) / ((m**2 - MW**2)**2 + (MW * GW)**2)
 
 def event_chi2(scales,event,mW,gW):
-    s1,s2,sl,sn = scales
+    s1,s2,sl,sn,t1,t2,tn,p1,p2,pn = scales
     j1,j2,lep,nu = event
-#    print(lep.pt)
-    j1f = j1 * s1
-    j2f = j2 * s2
-    lepf = lep * sl
-    nuf = nu * sn
+    
+    j1f_theta = j1.theta + t1* jet1_theta_rms
+    j2f_theta = j2.theta + t2* jet2_theta_rms
+    j1f_phi   = j1.phi   + p1* jet1_phi_rms
+    j2f_phi   = j2.phi   + p2* jet2_phi_rms
+    nuf_phi   = nu.phi   + pn* met_phi_rms
+    nuf_theta = nu.theta + tn* met_theta_rms
+    j1f_p     = j1.p * s1
+    j2f_p     = j2.p * s2    
+    lepf      = lep * sl
+    nuf_p     = nu.p * sn
 
+    nuf = vector.obj(
+        px= nuf_p * np.sin(nuf_theta) * np.cos(nuf_phi),
+        py= nuf_p * np.sin(nuf_theta) * np.sin(nuf_phi),
+        pz= nuf_p * np.cos(nuf_theta),
+        e=nuf_p
+    )
+
+    j1f = vector.obj(
+        px= j1f_p * np.sin(j1f_theta) * np.cos(j1f_phi),
+        py= j1f_p * np.sin(j1f_theta) * np.sin(j1f_phi),
+        pz= j1f_p * np.cos(j1f_theta),
+        e=j1f_p
+    )
+
+    j2f = vector.obj(
+        px= j2f_p * np.sin(j2f_theta) * np.cos(j2f_phi),
+        py= j2f_p * np.sin(j2f_theta) * np.sin(j2f_phi),
+        pz= j2f_p * np.cos(j2f_theta),
+        e=j2f_p
+    )
+    
     Wh = j1f + j2f
     Wl = lepf + nuf
     WW = Wh + Wl
 
     mjj = Wh.mass
     mlnu = Wl.mass
-    #    BW = MG/ [ (m2-M2)2 + M2G2]
     bw = -2 * (np.log(breit_wigner(mjj, mW, gW)) + np.log(breit_wigner(mlnu, mW, gW)))
     cons = (
         (WW.E-ECM)**2/(sigma_sqrtS **2) +
         ((Wl.px + Wh.px)**2 + (Wl.py + Wh.py)**2 + (Wl.pz + Wh.pz)**2)*100
-        #((Wl.px + Wh.px)**2 + (Wl.py + Wh.py)**2 + (Wl.pz + Wh.pz)**2/1.5**2)
+
     )
     
-    mean_s1 = 1.0 / (1.0 + mean_j1)
-    mean_s2 = 1.0 / (1.0 + mean_j2)
-    mean_sl = 1.0 / (1.0  + mean_lep)
-    mean_sn = 1.0 / (1.0 + mean_mp)
-    res=( (s1 - 1.02)**2 / 0.05**2 + #sigma_j1**2 +                                                                                                                                                     
-    (s2 - 1.02)**2 / 0.05**2 + #sigma_j2**2 +                                                                                                                                                
-    (sl - 1.0)**2 / 0.01**2 +  #sigma_lep**2 +                                                                                                                                                            
-    (sn - 1.0)**2 / 0.05**2 #sigma_mp**2
-         )
-#    res = (
-#    #(s1 - 1.02)**2 / 0.005**2 + #sigma_j1**2 +
-#    #(s2 - 1.02)**2 / 0.005**2 + #sigma_j2**2 +
-#    #(sl - 1.0)**2 / 0.0048**2 +  #sigma_lep**2 +
-#    #(sn - 1.0)**2 / 0.01446**2 #sigma_mp**2
-#    (s1 - mean_s1)**2 / sigma_j1**2 +
-#    (s2 - mean_s2)**2 / sigma_j2**2 +
-#    (sl - mean_sl)**2 / sigma_lep**2 +
-#    (sn - mean_sn)**2 / sigma_mp**2
-#    )
+
+    res=( (s1 - 1.01)**2 / 0.05**2 + #sigma_j1**2 +                                                                                                                                                     
+    (s2 - 1.01)**2 / 0.05**2 + #sigma_j2**2 +                                                                                                                                                
+    (sl - 1.0)**2 / 0.002**2 +  #sigma_lep**2 +                                                                                                                                                           
+    (sn - 1.0)**2 / 0.015**2 #sigma_mp**2
+    )
+
+    angular=(pn**2+tn**2+p1**2+p2**2+t1**2+t2**2)
+
+    
     #print( mean_sl ,"verusu", mean_j2,mean_j1,mean_sn)
     #print("mean_s2 =", mean_s2,"verusu", mean_j2,sigma_j2)
     #print("mean_sl =", mean_sl,"verusu", mean_lep, sigma_lep)
@@ -258,8 +339,9 @@ def event_chi2(scales,event,mW,gW):
     #print("mean_sn =", mean_sn)
     #print("expected scale =", 1/(1+mean_j1))
     #pull_s1 = (vals["s1"] - mean_s1) / sigma_s1
-
-    return bw + cons + res #mass_term + cons #+ res
+    #print(s1,s2,sn,p1,p2,pn,t1,t2,tn)
+    #print(met_phi_rms,met_theta_rms,jet1_theta_rms,jet1_phi_rms,jet2_phi_rms,jet2_theta_rms)
+    return bw + cons + res + angular
 
 
 
@@ -267,10 +349,9 @@ def event_chi2(scales,event,mW,gW):
 
 def fit_event(event):
     
-    def f(s1,s2,sl,sn,mW,gW):
-        return event_chi2((s1,s2,sl,sn),event,mW,gW)
-
-    m = Minuit(f,s1=1,s2=1,sl=1,sn=1,mW=80.419,gW=2.049)# missing mW and gamma W #one fit fxn
+    def f(s1,s2,sl,sn,t1,t2,tn,p1,p2,pn,mW,gW):
+        return event_chi2((s1,s2,sl,sn,t1,t2,tn,p1,p2,pn),event,mW,gW)
+    m = Minuit(f,s1=1,s2=1,sl=1,sn=1,t1=0,t2=1,tn=1,p1=1,p2=1,pn=1,mW=80.419,gW=2.049)# missing mW and gamma W #one fit fxn
     m.limits["mW"] = (0, 200)
     m.limits["gW"] = (0,10)
     m.fixed["gW"] = True
@@ -302,7 +383,9 @@ def fit_event(event):
 
 for i, event in enumerate(events):
     m = fit_event(event)
-    if not m.valid or m.fval > 200: continue
+    if not m.valid or m.fval > 200: 
+        print("not saving",  m.valid ,"chi2",m.fval);
+        continue
     if i > 20000: break
     #print("converged")
     #print("Strategy:", m.strategy)
@@ -317,11 +400,26 @@ for i, event in enumerate(events):
     s2_arr[0] =vals["s2"]
     sl_arr[0] =vals["sl"]
     sn_arr[0] =vals["sn"]
+    p1_arr[0] =vals["p1"]
+    p2_arr[0] =vals["p2"]
+    pn_arr[0] =vals["pn"]
+    t1_arr[0] =vals["t1"]
+    t2_arr[0] =vals["t2"]
+    tn_arr[0] =vals["tn"]
+
+    
     chi2_arr[0]=m.fval
     s1 = vals["s1"]
     s2 = vals["s2"]
     sl = vals["sl"]
     sn = vals["sn"]
+    t1 = vals["t1"]
+    t2 = vals["t2"]
+    tn = vals["tn"]
+    p1 = vals["p1"]
+    p2 = vals["p2"]
+    pn = vals["pn"]
+    
     mean_s1 = 1.0 / (1.0 + mean_j1)
     mean_s2 = 1.0 / (1.0 + mean_j2)
     mean_sl = 1.0 / (1.0 + mean_lep)
@@ -337,10 +435,39 @@ for i, event in enumerate(events):
     h_pull_sl.Fill((sl - mean_sl) / sigma_sl)
     h_pull_sn.Fill((sn - mean_sn) / sigma_sn)
     j1, j2, lep, nu = event
-    j1f  = j1 * s1
-    j2f  = j2 * s2
-    lepf = lep * sl
-    nuf  = nu * sn
+    j1f_p  = j1.p * s1
+    j2f_p  = j2.p * s2
+    lepf   = lep * sl
+    nuf_p  = nu.p * sn    
+    j1f_theta = j1.theta+t1*jet1_theta_rms
+    j2f_theta = j2.theta+t2*jet2_theta_rms
+    j1f_phi   = j1.phi+p1*jet1_phi_rms
+    j2f_phi   = j2.phi+p2*jet2_phi_rms
+    nuf_phi   = nu.phi+pn*met_phi_rms
+    nuf_theta = nu.theta+t2*met_theta_rms
+    #print(nuf_p)
+    nuf = vector.obj(
+        px= nuf_p * np.sin(nuf_theta) * np.cos(nuf_phi),
+        py= nuf_p * np.sin(nuf_theta) * np.sin(nuf_phi),
+        pz= nuf_p * np.cos(nuf_theta),
+        e=nuf_p
+    )
+
+    j1f = vector.obj(
+        px= j1f_p * np.sin(j1f_theta) * np.cos(j1f_phi),
+        py= j1f_p * np.sin(j1f_theta) * np.sin(j1f_phi),
+        pz= j1f_p * np.cos(j1f_theta),
+        e=j1f_p
+    )
+
+    j2f = vector.obj(
+        px= j2f_p * np.sin(j2f_theta) * np.cos(j2f_phi),
+        py= j2f_p * np.sin(j2f_theta) * np.sin(j2f_phi),
+        pz= j2f_p * np.cos(j2f_theta),
+        e=j2f_p
+    )
+
+    
     Wh = j1f + j2f
     Wl = lepf + nuf
     mWhad_postfit[0] = Wh.mass
@@ -356,6 +483,15 @@ for i, event in enumerate(events):
     pt_j2_postfit[0] = j2f.pt
     pt_lep_postfit[0] = lepf.pt
     pt_nu_postfit[0] = nuf.pt
+
+    theta_j1_postfit[0] = j1f.theta
+    theta_j2_postfit[0] = j2f.theta
+    theta_nu_postfit[0] = nuf.theta
+
+    phi_j1_postfit[0] = j1f.phi
+    phi_j2_postfit[0] = j2f.phi
+    phi_nu_postfit[0] = nuf.phi
+
     deltaP_postfit[0] = np.sqrt((Wl.px + Wh.px)**2 + (Wl.py + Wh.py)**2 + (Wl.pz +Wh.pz)**2)
     Whad = j1 + j2
     Wlep = lep + nu
@@ -372,9 +508,20 @@ for i, event in enumerate(events):
     Whad_px_prefit[0]=Whad.px
     Whad_py_prefit[0]=Whad.py
     Whad_pz_prefit[0]=Whad.pz
+    
+    theta_j1_prefit[0] = j1.theta
+    theta_j2_prefit[0] = j2.theta
+    theta_nu_prefit[0] = nu.theta
+    phi_j1_prefit[0] = j1.phi
+    phi_j2_prefit[0] = j2.phi
+    phi_nu_prefit[0] = nu.phi
 
+    
     tree_out.Fill()
 
 #outFile.cd()
 tree_out.Write()
 outFile.Close()
+
+
+#######TO DO run with a mean value of 1 for jets
