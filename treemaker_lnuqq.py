@@ -168,17 +168,11 @@ class RDFanalysis:
         )
 
         if channel == "had":
-            #hadronic=True
             df = df.Filter("muons_sel_iso.size() + electrons_sel_iso.size() == 0")
-        elif  channel == "semihad":
-            #semihad=True
-            #df = df.Filter("muons_all.size() + electrons_all.size() > 0")
-            df = df.Filter("muons_sel_iso.size() + electrons_sel_iso.size() == 1")
         else:
-            #lep=True
-            df = df.Filter("muons_sel_iso.size() + electrons_sel_iso.size() == 2")
-
-
+            semihad=True
+            #df = df.Filter("muons_all.size() + electrons_all.size() > 0")
+            #df = df.Filter("muons_sel_iso.size() + electrons_sel_iso.size() == 1")
             df = df.Define(
                 "muons_p", "FCCAnalyses::ReconstructedParticle::get_p(muons_all)"
             )
@@ -927,41 +921,6 @@ RVec<float> matchJetsAndComputeResolution(
 
                 )
 
-            #            m_on  = max(m_lnu , m_jj)
-            #           m_off = min(m_lnu , m_jj)
-
-#            ROOT.gInterpreter.Declare("""
-#            #include <cmath>
-#            #include <vector>
-#            
-#            struct FitResult {
-#            float mW;
-#            float gW;
-#            float scale_lep;
-#            float scale_jet1;
-#            float scale_jet2;
-#            float scale_mp;
-#            float chi2;
-#            };
-#            TLorentzVector lep,jet1,jet2,mp, Wlep,Whad,WW;
-#            lep.SetPxPyPzE(
-#            Isolep_p * cos(Isolep_phi) *sin(Isolep_theta),
-#            Isolep_p * sin(Isolep_phi) * sin(Isolep_theta),
-#            Isolep_p * cos(Isolep_theta),
-#            Isolep_p
-#            );
-#            mp.SetPxPyPzE(
-#            missing_p * cos(missing_p_phi) * sin(missing_p_theta),
-#            missing_p * sin(missing_p_phi) * sin(missing_p_theta),
-#            missing_p * cos(missing_p_theta),
-#            missing_p
-#            );
-#            jet1.SetPxPyPzE(jets_p4[0].Px(),jets_p4[0].Py(),jets_p4[0].Pz(),jets_p4[0].E());
-#            jet2.SetPxPyPzE(jets_p4[1].Px(),jets_p4[1].Py(),jets_p4[1].Pz(),jets_p4[1].E());
-#TODODODODODO
-#            
-#            }
-#            """)
             
         return df
 
